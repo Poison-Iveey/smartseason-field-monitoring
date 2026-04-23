@@ -13,6 +13,9 @@ const FieldUpdate = require("./models/FieldUpdate");
 const updateRoutes = require("./routes/updateRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 
+// relationship
+Field.hasMany(FieldUpdate, { foreignKey: "field_id" });
+FieldUpdate.belongsTo(Field, { foreignKey: "field_id" });
 
 // for middleware
 app.use(cors());

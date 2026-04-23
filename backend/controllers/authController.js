@@ -40,6 +40,24 @@ exports.register = async (req, res) => {
   }
 };
 
+
+
+exports.getUsers = async (req, res) => {
+  try {
+    const users = await User.findAll({
+      attributes: ["id", "email", "role"], 
+    });
+
+    res.json(users);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
+
 // 🔹 Login User
 exports.login = async (req, res) => {
   try {
@@ -80,3 +98,5 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+

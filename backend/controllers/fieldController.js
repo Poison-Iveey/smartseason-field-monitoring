@@ -1,5 +1,6 @@
 const Field = require("../models/Field");
 const { getFieldStatus } = require("../services/statusService");
+const FieldUpdate = require("../models/FieldUpdate");
 
 // Create field - for Admin only
 exports.createField = async (req, res) => {
@@ -21,33 +22,69 @@ exports.createField = async (req, res) => {
   }
 };
 
-// Get fields - based on role
-exports.getFields = async (req, res) => {
+exports.updateField = async (req, res) => {
   try {
-    let fields;
+    const field = await Field.findByPk(req.params.id);
 
-    if (req.user.role === "admin") {
-      fields = await Field.findAll();
-    } else {
-      fields = await Field.findAll({
-        where: { assigned_agent_id: req.user.id },
-      });
+    if (!field) {
+      return res.status(404).json({ message: "Field not found" });
     }
 
-    const enrichedFields = await Promise.all(
-      fields.map(async (field) => {
-        const status = await getFieldStatus(field);
-        return {
-          ...field.toJSON(),
-          status,
-        };
-      })
-    );
+    await field.update(req.body);
 
-    res.json(enrichedFields);
+    res.json(field);
 
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });
   }
 };
+
+
+//Get fields - based on role
+exports.getFields = async (req, res) => {
+  try {
+    let fields;
+
+    const include = [
+      {
+        model: FieldUpdate,
+      },
+    ];
+
+    if (req.user.role === "admin") {
+      fields = await Field.findAll({ include });
+    } else {
+      fields = await Field.findAll({
+        where: { assigned_agent_id: req.user.id },
+        include,
+      });
+    }
+
+    const enrichedFields = await Promise.all(
+  fields.map(async (field) => {
+    const updates = field.FieldUpdates || [];
+
+    const latest = updates.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    )[0];
+
+    const status = await getFieldStatus(field);
+
+    return {
+      ...field.toJSON(),
+      status,
+      latestNote: latest ? latest.note : null,
+    };
+  })
+);
+
+res.json(enrichedFields);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
