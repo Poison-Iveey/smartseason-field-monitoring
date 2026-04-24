@@ -49,6 +49,7 @@ exports.getFields = async (req, res) => {
     const include = [
       {
         model: FieldUpdate,
+        required: false, 
       },
     ];
 
@@ -62,29 +63,27 @@ exports.getFields = async (req, res) => {
     }
 
     const enrichedFields = await Promise.all(
-  fields.map(async (field) => {
-    const updates = field.FieldUpdates || [];
+      fields.map(async (field) => {
+        const updates = field.FieldUpdates || [];
 
-    const latest = updates.sort(
-      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-    )[0];
+        const latest = updates.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        )[0];
 
-    const status = await getFieldStatus(field);
+        const status = await getFieldStatus(field);
 
-    return {
-      ...field.toJSON(),
-      status,
-      latestNote: latest ? latest.note : null,
-    };
-  })
-);
+        return {
+          ...field.toJSON(),
+          status,
+          latestNote: latest ? latest.note : null,
+        };
+      })
+    );
 
-res.json(enrichedFields);
+    res.json(enrichedFields);
 
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });
   }
 };
-
-
