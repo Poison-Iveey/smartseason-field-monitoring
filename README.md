@@ -69,11 +69,11 @@ It supports two roles:
 
 To test the application, use the following accounts:
 
-## Admin Account
+#### Admin Account
 Email: yvettechristine245@gmail.com
 Password: mishap4110
 
-## Agent Accounts
+#### Agent Accounts
 Email: christineyvett0@gmail.com
 Password: mishap4110
 
@@ -84,15 +84,15 @@ Password: mishap4110
 These credentials are for demo/testing purposes only
 Authentication is role-based using JWT/session-based login
 
-##System Roles & Permissions
+## System Roles & Permissions
 
-##Admin
+#### Admin
 Can view all fields
 Can create new fields
 Can assign fields to agents
 Can view all updates and crop statuses
 
-##Agent
+#### Agent
 Can view all fields (read-only access)
 Can only update fields assigned to them
 Cannot create or reassign fields
@@ -120,7 +120,8 @@ Yvette Christine
 
 ### screenshots
 <img width="1125" height="764" alt="image" src="https://github.com/user-attachments/assets/70007856-ca00-4174-85de-94a506f37eeb" />
-<img width="1300" height="736" alt="Screenshot from 2026-04-24 11-27-18" src="https://github.com/user-attachments/assets/5e78f057-64ba-4b8e-92b6-310baa0eba8c" />
+<img width="1126" height="764" alt="Screenshot from 2026-04-24 19-04-11" src="https://github.com/user-attachments/assets/624d35de-3f75-4e6f-af3a-16c0a62a33b2" />
+
 
 
 
