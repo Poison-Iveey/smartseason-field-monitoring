@@ -53,14 +53,16 @@ exports.getFields = async (req, res) => {
       },
     ];
 
-    if (req.user.role === "admin") {
+    /*if (req.user.role === "admin") {
       fields = await Field.findAll({ include });
     } else {
       fields = await Field.findAll({
         where: { assigned_agent_id: req.user.id },
         include,
       });
-    }
+    }*/
+
+      fields = await Field.findAll({ include });
 
     const enrichedFields = await Promise.all(
       fields.map(async (field) => {
