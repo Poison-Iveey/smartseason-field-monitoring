@@ -81,28 +81,28 @@ Email: catherinefiona@gmail.com
 Password: mishap4110
 
 ### NOTE
-These credentials are for demo/testing purposes only
-Authentication is role-based using JWT/session-based login
+- These credentials are for demo/testing purposes only
+- Authentication is role-based using JWT/session-based login
 
 ## System Roles & Permissions
 
 #### Admin
-Can view all fields
-Can create new fields
-Can assign fields to agents
-Can view all updates and crop statuses
+- Can view all fields
+- Can create new fields
+- Can assign fields to agents
+- Can view all updates and crop statuses
 
 #### Agent
-Can view all fields (read-only access)
-Can only update fields assigned to them
-Cannot create or reassign fields
+- Can view all fields (read-only access)
+- Can only update fields assigned to them
+- Cannot create or reassign fields
 
 ### Field Access Rules
-Each field is assigned to a specific agent by the admin
+Each field is assigned to a specific agent by the admin. 
 Agents can only update:
--Growth stage
--Field notes
--Status updates
+- Growth stage
+- Field notes
+- Status updates
 - Field risk status is automatically determined based on updates (e.g. missed updates)
 
 ### Future Improvements
@@ -119,8 +119,9 @@ Access the live deployment on this link https://smartseason-field-monitoring-del
 Yvette Christine 
 
 ### screenshots
-<img width="1125" height="764" alt="image" src="https://github.com/user-attachments/assets/70007856-ca00-4174-85de-94a506f37eeb" />
-<img width="1126" height="764" alt="Screenshot from 2026-04-24 19-04-11" src="https://github.com/user-attachments/assets/624d35de-3f75-4e6f-af3a-16c0a62a33b2" />
+- <img width="1125" height="764" alt="image" src="https://github.com/user-attachments/assets/70007856-ca00-4174-85de-94a506f37eeb" />
+
+- <img width="1126" height="764" alt="Screenshot from 2026-04-24 19-04-11" src="https://github.com/user-attachments/assets/624d35de-3f75-4e6f-af3a-16c0a62a33b2" />
 
 
 
