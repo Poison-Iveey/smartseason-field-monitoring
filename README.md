@@ -65,6 +65,46 @@ It supports two roles:
 - Backend → Render
 - Frontend → vercel
 
+### Demo Login Credentials
+
+To test the application, use the following accounts:
+
+## Admin Account
+Email: yvettechristine245@gmail.com
+Password: mishap4110
+
+## Agent Accounts
+Email: christineyvett0@gmail.com
+Password: mishap4110
+
+Email: catherinefiona@gmail.com
+Password: mishap4110
+
+### NOTE
+These credentials are for demo/testing purposes only
+Authentication is role-based using JWT/session-based login
+
+##System Roles & Permissions
+
+##Admin
+Can view all fields
+Can create new fields
+Can assign fields to agents
+Can view all updates and crop statuses
+
+##Agent
+Can view all fields (read-only access)
+Can only update fields assigned to them
+Cannot create or reassign fields
+
+### Field Access Rules
+Each field is assigned to a specific agent by the admin
+Agents can only update:
+-Growth stage
+-Field notes
+-Status updates
+- Field risk status is automatically determined based on updates (e.g. missed updates)
+
 ### Future Improvements
 - Full update history (not just latest)
 - Charts for seasonal trends
@@ -72,10 +112,15 @@ It supports two roles:
 - Image uploads from agents
 - Deployment on cloud(Azure)
 
+### Live link
+Access the live deployment on this link https://smartseason-field-monitoring-delta.vercel.app/
+
 ### Author
 Yvette Christine 
 
 ### screenshots
+<img width="1125" height="764" alt="image" src="https://github.com/user-attachments/assets/70007856-ca00-4174-85de-94a506f37eeb" />
+<img width="1300" height="736" alt="Screenshot from 2026-04-24 11-27-18" src="https://github.com/user-attachments/assets/5e78f057-64ba-4b8e-92b6-310baa0eba8c" />
 
 
 
