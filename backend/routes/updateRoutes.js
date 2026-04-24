@@ -5,7 +5,7 @@ const { addUpdate, getUpdates } = require("../controllers/updateController");
 const { protect, authorizeRoles } = require("../middleware/authMiddleware");
 
 // Agent adds update
-router.post("/:fieldId", protect, authorizeRoles("agent"), addUpdate);
+router.post("/:fieldId", protect, authorizeRoles("agent", "admin"), addUpdate);
 
 // View updates (both roles)
 router.get("/:fieldId", protect, getUpdates);

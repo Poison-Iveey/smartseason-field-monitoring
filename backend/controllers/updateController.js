@@ -8,16 +8,19 @@ exports.addUpdate = async (req, res) => {
     const { stage, note } = req.body;
 
     // Check if field belongs to this agent
-    const field = await Field.findOne({
-      where: {
-        id: fieldId,
-        assigned_agent_id: req.user.id,
-      },
-    });
+    const field = await Field.findByPk(fieldId);
 
     if (!field) {
-      return res.status(403).json({ message: "Not your field" });
-    }
+      return res.status(404).json({ message: "Field not found" });
+}
+
+
+    if (
+      req.user.role !== "admin" &&
+      field.assigned_agent_id !== req.user.id
+    ) {
+      return res.status(403).json({ message: "Not authorized" });
+}
 
     // Create update
     const update = await FieldUpdate.create({
