@@ -74,7 +74,7 @@ Email: yvettechristine245@gmail.com
 Password: mishap4110
 
 #### Agent Accounts
-Email: christineyvett0@gmail.com
+Email: christineyvette0@gmail.com
 Password: mishap4110
 
 Email: catherinefiona@gmail.com
