@@ -9,7 +9,7 @@ export default function CreateField({ onCreate }) {
   const [agentId, setAgentId] = useState("");
 
   useEffect(() => {
-    api.get("/auth/users") 
+    api.get("/auth/users")
       .then(res => {
         const agentsOnly = res.data.filter(u => u.role === "agent");
         setAgents(agentsOnly);
@@ -28,53 +28,75 @@ export default function CreateField({ onCreate }) {
         assigned_agent_id: agentId,
       });
 
-      // resest
       setName("");
       setCropType("");
       setPlantingDate("");
       setAgentId("");
 
-      onCreate(); 
-
+      onCreate();
     } catch (err) {
       console.error(err);
       alert("Failed to create field");
     }
   };
 
+  // Updated input style as requested
+  const inputStyle = {
+    width: "100%",
+    padding: "0.5rem",
+    marginBottom: "1rem",
+    borderRadius: "6px",
+    border: "1px solid rgba(255,255,255,0.2)",
+    outline: "none",
+    fontSize: "16px",
+    background: "rgba(255,255,255,0.1)",
+    color: "white"
+  };
+
   return (
     <div style={{
-      background: "white",
-      padding: "1.5rem",
-      borderRadius: "12px",
-      marginBottom: "2rem",
-      boxShadow: "0 4px 12px rgba(0,0,0,0.08)"
+      background: "rgba(15, 47, 31, 0.65)",
+      backdropFilter: "blur(10px)",
+      color: "white",
+      borderRadius: "16px",
+      padding: "2rem",
+      boxShadow: "0 8px 30px rgba(0,0,0,0.05)"
     }}>
-      <h3>Create New Field</h3>
+      <h3 style={{
+        marginBottom: "1.5rem",
+        color: "#0f2f1f"
+      }}>
+        🌱 Create New Field
+      </h3>
 
       <form onSubmit={handleSubmit}>
+
         <input
+          style={inputStyle}
           placeholder="Field Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
-        /><br /><br />
+        />
 
         <input
+          style={inputStyle}
           placeholder="Crop Type"
           value={cropType}
           onChange={(e) => setCropType(e.target.value)}
           required
-        /><br /><br />
+        />
 
         <input
+          style={inputStyle}
           type="date"
           value={plantingDate}
           onChange={(e) => setPlantingDate(e.target.value)}
           required
-        /><br /><br />
+        />
 
         <select
+          style={inputStyle}
           value={agentId}
           onChange={(e) => setAgentId(e.target.value)}
           required
@@ -87,9 +109,22 @@ export default function CreateField({ onCreate }) {
           ))}
         </select>
 
-        <br /><br />
+        <button type="submit" style={{
+          width: "100%",
+          padding: "0.6rem",
+          borderRadius: "8px",
+          border: "none",
+          background: "#2a9d8f",
+          color: "white",
+          fontWeight: "bold",
+          cursor: "pointer",
+          fontSize: "16px",
+          marginTop: "0.5rem",
+          transition: "0.3s"
+        }}>
+          Create Field
+        </button>
 
-        <button type="submit">Create Field</button>
       </form>
     </div>
   );

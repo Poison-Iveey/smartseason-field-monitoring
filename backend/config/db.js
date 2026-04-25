@@ -1,8 +1,9 @@
-console.log("ENV CHECK:", 
-    process.env.DB_NAME, process.env.DB_USER);
+require("dotenv").config();
 
 const { Sequelize } = require("sequelize");
-require("dotenv").config();
+
+console.log("ENV CHECK:", 
+    process.env.DB_NAME, process.env.DB_USER);
 
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: "postgres",

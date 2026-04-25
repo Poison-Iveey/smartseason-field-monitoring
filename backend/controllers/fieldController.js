@@ -41,7 +41,7 @@ exports.updateField = async (req, res) => {
 };
 
 
-//Get fields - based on role
+// Get fields - based on role
 exports.getFields = async (req, res) => {
   try {
     let fields;
@@ -49,20 +49,20 @@ exports.getFields = async (req, res) => {
     const include = [
       {
         model: FieldUpdate,
-        required: false, 
+        required: false,
       },
     ];
 
-    /*if (req.user.role === "admin") {
-      fields = await Field.findAll({ include });
-    } else {
+    if (req.user.role === "agent") {
       fields = await Field.findAll({
         where: { assigned_agent_id: req.user.id },
         include,
       });
-    }*/
-
-      fields = await Field.findAll({ include });
+    } else {
+      fields = await Field.findAll({
+        include,
+      });
+    }
 
     const enrichedFields = await Promise.all(
       fields.map(async (field) => {
