@@ -118,10 +118,13 @@ Access the live deployment on this link https://smartseason-field-monitoring-del
 Yvette Christine 
 
 ### screenshots
+
+- <img width="1366" height="768" alt="Screenshot from 2026-04-25 16-42-48" src="https://github.com/user-attachments/assets/cf52eb11-45f0-4dbd-871b-89286e554083" />
+
+
 - <img width="1366" height="768" alt="Screenshot from 2026-04-25 16-39-59" src="https://github.com/user-attachments/assets/be41a37a-e3f4-46ad-b591-00a869419a70" />
 
 
-- <img width="1366" height="768" alt="Screenshot from 2026-04-25 16-39-59" src="https://github.com/user-attachments/assets/a36aaa8e-4d7a-493d-9626-e31dc9c08e5a" />
 
 
 
