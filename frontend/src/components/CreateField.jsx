@@ -7,6 +7,7 @@ export default function CreateField({ onCreate }) {
   const [plantingDate, setPlantingDate] = useState("");
   const [agents, setAgents] = useState([]);
   const [agentId, setAgentId] = useState("");
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     api.get("/auth/users")
@@ -15,6 +16,10 @@ export default function CreateField({ onCreate }) {
         setAgents(agentsOnly);
       })
       .catch(err => console.error(err));
+
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handleSubmit = async (e) => {
@@ -40,7 +45,6 @@ export default function CreateField({ onCreate }) {
     }
   };
 
-  // Updated input style 
   const inputStyle = {
     width: "100%",
     padding: "0.5rem",
@@ -50,17 +54,20 @@ export default function CreateField({ onCreate }) {
     outline: "none",
     fontSize: "16px",
     background: "rgba(255,255,255,0.1)",
-    color: "white"
+    color: "white",
   };
 
   return (
     <div style={{
+      width: isMobile ? "100%" : "500px",
+      maxWidth: "100%",
       background: "rgba(15, 47, 31, 0.65)",
       backdropFilter: "blur(10px)",
       color: "white",
       borderRadius: "16px",
-      padding: "2rem",
-      boxShadow: "0 8px 30px rgba(0,0,0,0.05)"
+      padding: isMobile ? "1rem" : "2rem",
+      boxShadow: "0 8px 30px rgba(0,0,0,0.05)",
+      margin: "0 auto"
     }}>
       <h3 style={{
         marginBottom: "1.5rem",
@@ -70,7 +77,6 @@ export default function CreateField({ onCreate }) {
       </h3>
 
       <form onSubmit={handleSubmit}>
-
         <input
           style={inputStyle}
           placeholder="Field Name"
@@ -124,7 +130,6 @@ export default function CreateField({ onCreate }) {
         }}>
           Create Field
         </button>
-
       </form>
     </div>
   );

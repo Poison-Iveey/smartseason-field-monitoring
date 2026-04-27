@@ -114,6 +114,7 @@ import UpdateField from "./UpdateField";
 
 export default function FieldList({ isAgent, onUpdate }) {
   const [fields, setFields] = useState([]);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const fetchFields = () => {
     api.get("/fields")
@@ -124,15 +125,25 @@ export default function FieldList({ isAgent, onUpdate }) {
   useEffect(() => {
     fetchFields();
     const interval = setInterval(fetchFields, 5000);
-    return () => clearInterval(interval);
+
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
-    <div style={{ position: "relative", zIndex:1 }}>
-      
+    <div style={{ position: "relative", zIndex: 1 }}>
       <h3 style={styles.title}>Fields</h3>
 
-      <div style={styles.grid}>
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: isMobile ? "repeat(auto-fit, minmax(200px, 1fr))" : "repeat(auto-fit, minmax(320px, 1fr))",
+        gap: "1.5rem"
+      }}>
         {fields.map(field => (
           <div key={field.id} style={styles.card}>
 
@@ -141,10 +152,8 @@ export default function FieldList({ isAgent, onUpdate }) {
 
             {/* CONTENT */}
             <div style={styles.content}>
-
               <div style={styles.header}>
                 <h4 style={styles.name}>{field.name}</h4>
-
                 <span style={{
                   ...styles.status,
                   background:
@@ -181,7 +190,6 @@ export default function FieldList({ isAgent, onUpdate }) {
               )}
 
             </div>
-
           </div>
         ))}
       </div>
@@ -190,63 +198,49 @@ export default function FieldList({ isAgent, onUpdate }) {
 }
 
 /* STYLES */
-
 const styles = {
   title: {
     color: "#0f2f1f",
     marginBottom: "1rem",
     fontWeight: "700"
   },
-
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-    gap: "1.5rem"
-  },
-
   card: {
     position: "relative",
     borderRadius: "14px",
     overflow: "hidden",
     padding: "1.5rem",
-    background: "rgba(15, 47, 31, 0.65)", 
+    background: "rgba(15, 47, 31, 0.65)",
     backdropFilter: "blur(10px)",
     boxShadow: "0 8px 25px rgba(0,0,0,0.25)",
     color: "white"
   },
-
   imageBg: {
     position: "absolute",
     inset: 0,
     backgroundImage: "url('https://i.pinimg.com/1200x/24/e0/3c/24e03ce4d4762dcbc3980ce4a49983f6.jpg')",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    opacity: 0.25   
+    opacity: 0.25
   },
-
   content: {
     position: "relative",
     zIndex: 2
   },
-
   header: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: "1rem"
   },
-
   name: {
     margin: 0,
     color: "white",
     fontWeight: "700"
   },
-
   text: {
-    color: "#f3f4f6", 
+    color: "#f3f4f6",
     margin: "0.3rem 0"
   },
-
   status: {
     padding: "0.3rem 0.7rem",
     borderRadius: "20px",
@@ -254,7 +248,6 @@ const styles = {
     fontWeight: "bold",
     color: "white"
   },
-
   note: {
     marginTop: "0.8rem",
     padding: "0.6rem",
