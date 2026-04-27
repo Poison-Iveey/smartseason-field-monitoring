@@ -5,7 +5,6 @@ import FieldList from "../components/FieldList";
 export default function AgentDashboard() {
   const [data, setData] = useState(null);
   const [darkMode, setDarkMode] = useState(true);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const fetchDashboard = () => {
     api.get("/dashboard")
@@ -15,9 +14,6 @@ export default function AgentDashboard() {
 
   useEffect(() => {
     fetchDashboard();
-    const handleResize = () => setIsMobile(window.innerWidth <= 768);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handleLogout = () => {
@@ -26,27 +22,19 @@ export default function AgentDashboard() {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", minHeight: "100vh" }}>
-      
+    <div style={{ display: "flex", minHeight: "100vh" }}>
+
       {/* SIDEBAR */}
-      <div style={{
-        width: isMobile ? "100%" : "240px",
-        minHeight: isMobile ? "auto" : "100vh",
-        background: "rgba(0,0,0,0.25)",
-        backdropFilter: "blur(12px)",
-        color: "white",
-        padding: "1rem",
-        display: "flex",
-        flexDirection: isMobile ? "row" : "column",
-        justifyContent: "space-between",
-        alignItems: "center",
-        zIndex: 10
-      }}>
+      <div style={styles.sidebar}>
         <div>
-          <h2 style={{ marginBottom: isMobile ? "0" : "2rem" }}>🌱 SmartSeason</h2>
-          {!isMobile && (
+          <h2 style={{ marginBottom: window.innerWidth > 768 ? "2rem" : "0" }}>
+            🌱 SmartSeason
+          </h2>
+
+          {window.innerWidth > 768 && (
             <>
-              <p style={{ opacity: 0.7 }}>My Fields</p>
+              <p style={{ opacity: 0.7 }}>Dashboard</p>
+              <p style={{ opacity: 0.7 }}>Fields</p>
               <p style={{ opacity: 0.7 }}>Performance</p>
             </>
           )}
@@ -55,25 +43,29 @@ export default function AgentDashboard() {
         <div style={{
           display: "flex",
           gap: "0.5rem",
-          flexDirection: isMobile ? "row" : "column",
-          marginTop: isMobile ? "0" : "auto"
+          flexDirection: window.innerWidth > 768 ? "column" : "row"
         }}>
-          <button onClick={() => setDarkMode(prev => !prev)} style={styles.sidebarBtn}>Toggle Mode</button>
-          <button onClick={handleLogout} style={styles.sidebarBtn}>Logout</button>
+          <button
+            onClick={() => setDarkMode(prev => !prev)}
+            style={styles.sidebarBtn}
+          >
+            Toggle Mode
+          </button>
+
+          <button onClick={handleLogout} style={styles.logoutBtn}>
+            Logout
+          </button>
         </div>
       </div>
 
-      {/* MAIN */}
+      {/* MAIN DASHBOARD */}
       <div style={{
         flex: 1,
-        width: "100%",
-        padding: "1.5rem",
+        padding: window.innerWidth > 768 ? "2rem 2rem 2rem 260px" : "2rem 1.5rem",
         minHeight: "100vh",
-        overflowY: "auto",
         background: darkMode
           ? "linear-gradient(135deg, #0b1f17, #123a2a, #0b1f17)"
-          : "linear-gradient(135deg, #1a3a2a, #2e5941, #1a3a2a)",
-        marginLeft: isMobile ? 0 : "240px"
+          : "linear-gradient(135deg, #1a3a2a, #2e5941, #1a3a2a)"
       }}>
         {data && (
           <>
@@ -106,7 +98,23 @@ function StatCard({ label, value }) {
 }
 
 const styles = {
+  sidebar: {
+    width: window.innerWidth > 768 ? "240px" : "100%",
+    height: window.innerWidth > 768 ? "100vh" : "auto",
+    background: "rgba(0,0,0,0.25)",
+    backdropFilter: "blur(12px)",
+    color: "white",
+    padding: "1rem",
+    position: window.innerWidth > 768 ? "fixed" : "relative",
+    display: "flex",
+    flexDirection: window.innerWidth > 768 ? "column" : "row",
+    alignItems: "center",
+    justifyContent: window.innerWidth > 768 ? "flex-start" : "space-between",
+    zIndex: 10
+  },
+
   sidebarBtn: {
+    marginTop: "1rem",
     padding: "0.6rem",
     borderRadius: "8px",
     border: "none",
@@ -114,11 +122,23 @@ const styles = {
     background: "#2a9d8f",
     color: "white"
   },
+
+  logoutBtn: {
+    marginTop: "1rem",
+    padding: "0.6rem",
+    borderRadius: "8px",
+    border: "none",
+    cursor: "pointer",
+    background: "#2a9d8f",
+    color: "white"
+  },
+
   grid: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
     gap: "1rem"
   },
+
   card: {
     background: "rgba(15,47,31,0.65)",
     backdropFilter: "blur(10px)",
