@@ -128,7 +128,8 @@ export default function FieldList({ isAgent, onUpdate }) {
   }, []);
 
   return (
-    <div>
+    <div style={{ position: "relative", zIndex:1 }}>
+      
       <h3 style={styles.title}>Fields</h3>
 
       <div style={styles.grid}>

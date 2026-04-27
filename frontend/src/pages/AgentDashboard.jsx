@@ -22,7 +22,7 @@ export default function AgentDashboard() {
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
 
       {/* SIDEBAR */}
       <div style={styles.sidebar}>
@@ -31,10 +31,7 @@ export default function AgentDashboard() {
         <p style={{ opacity: 0.7 }}>My Fields</p>
         <p style={{ opacity: 0.7 }}>Performance</p>
 
-        <button
-          onClick={() => setDarkMode(prev => !prev)}
-          style={styles.sidebarBtn}
-        >
+        <button onClick={() => setDarkMode(prev => !prev)} style={styles.sidebarBtn}>
           Toggle Mode
         </button>
 
@@ -47,24 +44,21 @@ export default function AgentDashboard() {
 
       {/* MAIN */}
       <div style={{
-         marginLeft: window.innerWidth > 768 ? "240px" : "0",
-         width: "100%",
-         padding: "2rem",
-         minHeight: "100vh",
-         background: darkMode
-    ? "linear-gradient(135deg, #0b1f17, #123a2a, #0b1f17)"
-    : "linear-gradient(135deg, #1a3a2a, #2e5941, #1a3a2a)"
+        marginLeft: window.innerWidth > 768 ? "240px" : "0",
+        width: "100%",
+        height: "100vh",
+        overflowY: "auto",
+        padding: "1.5rem",
+        background: darkMode
+          ? "linear-gradient(135deg, #0b1f17, #123a2a, #0b1f17)"
+          : "linear-gradient(135deg, #1a3a2a, #2e5941, #1a3a2a)"
       }}>
 
         {data && (
           <>
             <h2>Agent Dashboard</h2>
 
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: "1rem"
-            }}>
+            <div style={styles.grid}>
               <StatCard label="Total Fields" value={data.total_fields} />
               <StatCard label="Active" value={data.status_breakdown.Active} />
               <StatCard label="At Risk" value={data.status_breakdown["At Risk"]} />
@@ -84,33 +78,25 @@ export default function AgentDashboard() {
 
 function StatCard({ label, value }) {
   return (
-    <div style={{
-      background: "rgba(15,47,31,0.65)",
-      backdropFilter: "blur(10px)",
-      color: "white",
-      padding: "1rem",
-      borderRadius: "12px",
-      boxShadow: "0 6px 20px rgba(0,0,0,0.2)"
-    }}>
+    <div style={styles.card}>
       <p>{label}</p>
       <h3>{value}</h3>
     </div>
   );
 }
 
-/* STYLES */
-
 const styles = {
   sidebar: {
     width: "240px",
-    minHeight: "100vh",
+    height: "100vh",
     background: "rgba(0,0,0,0.25)",
     backdropFilter: "blur(12px)",
     color: "white",
     padding: "1.5rem",
     position: "fixed",
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    zIndex: 10
   },
 
   sidebarBtn: {
@@ -131,5 +117,19 @@ const styles = {
     cursor: "pointer",
     background: "#2a9d8f",
     color: "white"
+  },
+
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+    gap: "1rem"
+  },
+
+  card: {
+    background: "rgba(15,47,31,0.65)",
+    backdropFilter: "blur(10px)",
+    color: "white",
+    padding: "1rem",
+    borderRadius: "12px"
   }
 };
