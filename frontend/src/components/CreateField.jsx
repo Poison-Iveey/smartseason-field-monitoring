@@ -40,7 +40,7 @@ export default function CreateField({ onCreate }) {
     }
   };
 
-  // Updated input style as requested
+  // Updated input style 
   const inputStyle = {
     width: "100%",
     padding: "0.5rem",

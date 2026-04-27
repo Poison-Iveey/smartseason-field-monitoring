@@ -77,7 +77,8 @@ export default function Login() {
         backgroundPosition: "center",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        padding: "1rem"
       }}>
 
         {/* GLASS LOGIN CARD */}
@@ -86,7 +87,8 @@ export default function Login() {
           background: "rgba(255,255,255,0.15)",
           padding: "2rem",
           borderRadius: "16px",
-          width: "320px",
+          width: "90%",
+          maxWidth: "360Px",
           boxShadow: "0 8px 30px rgba(0,0,0,0.2)",
           color: "white"
         }}>
@@ -124,7 +126,8 @@ export default function Login() {
                 marginBottom: "1rem",
                 borderRadius: "8px",
                 border: "none",
-                outline: "none"
+                outline: "none",
+                fontSize: "16px"
               }}
             />
 

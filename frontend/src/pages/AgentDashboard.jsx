@@ -47,7 +47,7 @@ export default function AgentDashboard() {
 
       {/* MAIN */}
       <div style={{
-         marginLeft: "240px",
+         marginLeft: window.innerWidth > 768 ? "240px" : "0",
          width: "100%",
          padding: "2rem",
          minHeight: "100vh",
@@ -98,7 +98,7 @@ function StatCard({ label, value }) {
   );
 }
 
-/* ================= STYLES ================= */
+/* STYLES */
 
 const styles = {
   sidebar: {

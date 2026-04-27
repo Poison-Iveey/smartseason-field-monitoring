@@ -49,7 +49,7 @@ export default function AdminDashboard() {
 
       {/* MAIN */}
       <div style={{
-        marginLeft: "240px",
+        marginLeft: window.innerWidth > 768 ? "240px" : "0",
          width: "100%",
          padding: "2rem",
          minHeight: "100vh",

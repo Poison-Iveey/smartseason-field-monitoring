@@ -188,7 +188,7 @@ export default function FieldList({ isAgent, onUpdate }) {
   );
 }
 
-/* ================= STYLES ================= */
+/* STYLES */
 
 const styles = {
   title: {
@@ -208,7 +208,7 @@ const styles = {
     borderRadius: "14px",
     overflow: "hidden",
     padding: "1.5rem",
-    background: "rgba(15, 47, 31, 0.65)", // NO WHITE
+    background: "rgba(15, 47, 31, 0.65)", 
     backdropFilter: "blur(10px)",
     boxShadow: "0 8px 25px rgba(0,0,0,0.25)",
     color: "white"
@@ -220,7 +220,7 @@ const styles = {
     backgroundImage: "url('https://i.pinimg.com/1200x/24/e0/3c/24e03ce4d4762dcbc3980ce4a49983f6.jpg')",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    opacity: 0.25   // 🔥 FIXED (was too low before)
+    opacity: 0.25   
   },
 
   content: {
@@ -242,7 +242,7 @@ const styles = {
   },
 
   text: {
-    color: "#f3f4f6", // strong readable white
+    color: "#f3f4f6", 
     margin: "0.3rem 0"
   },
 
