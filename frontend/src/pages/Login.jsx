@@ -36,8 +36,9 @@ export default function Login() {
   return (
     <div style={{
       display: "flex",
+      flexDirection: window.innerWidth < 768 ? "column" : "row" ,
       width: "100vw",
-      overflow: "hidden",
+      overflowX: "hidden",
       height: "100vh",
       fontFamily: "Inter, sans-serif"
     }}>
@@ -50,7 +51,8 @@ export default function Login() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        padding: "4rem"
+        padding: "4rem",
+        width: window.innerWidth < 768 ? "100%" : "50%"
       }}>
         <h1 style={{
           fontSize: "2.5rem",
@@ -78,7 +80,8 @@ export default function Login() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "1rem"
+        padding: "1rem",
+        width: "100%"
       }}>
 
         {/* GLASS LOGIN CARD */}
