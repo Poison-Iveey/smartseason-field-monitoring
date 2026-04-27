@@ -26,25 +26,42 @@ export default function AgentDashboard() {
 
       {/* SIDEBAR */}
       <div style={styles.sidebar}>
-        <h2 style={{ marginBottom: "2rem" }}>🌱 SmartSeason</h2>
+  <div>
+    <h2 style={{ marginBottom: window.innerWidth > 768 ? "2rem" : "0" }}>
+      🌱 SmartSeason
+    </h2>
 
-        <p style={{ opacity: 0.7 }}>My Fields</p>
+    {window.innerWidth > 768 && (
+      <>
+        <p style={{ opacity: 0.7 }}>Dashboard</p>
+        <p style={{ opacity: 0.7 }}>Fields</p>
         <p style={{ opacity: 0.7 }}>Performance</p>
+      </>
+    )}
+  </div>
 
-        <button onClick={() => setDarkMode(prev => !prev)} style={styles.sidebarBtn}>
-          Toggle Mode
-        </button>
+  <div style={{
+    display: "flex",
+    gap: "0.5rem",
+    flexDirection: window.innerWidth > 768 ? "column" : "row"
+  }}>
+    <button
+      onClick={() => setDarkMode(prev => !prev)}
+      style={styles.sidebarBtn}
+    >
+      Toggle Mode
+    </button>
 
-        <div style={{ marginTop: "auto" }}>
-          <button onClick={handleLogout} style={styles.logoutBtn}>
-            Logout
-          </button>
-        </div>
-      </div>
+    <button onClick={handleLogout} style={styles.logoutBtn}>
+      Logout
+    </button>
+  </div>
+</div>
 
       {/* MAIN */}
       <div style={{
         marginLeft: window.innerWidth > 768 ? "240px" : "0",
+        marginTop: window.innerWidth > 768 ? "0" : "80px",
         width: "100%",
         height: "100vh",
         overflowY: "auto",
@@ -87,17 +104,19 @@ function StatCard({ label, value }) {
 
 const styles = {
   sidebar: {
-    width: "240px",
-    height: "100vh",
-    background: "rgba(0,0,0,0.25)",
-    backdropFilter: "blur(12px)",
-    color: "white",
-    padding: "1.5rem",
-    position: "fixed",
-    display: "flex",
-    flexDirection: "column",
-    zIndex: 10
-  },
+  width: window.innerWidth > 768 ? "240px" : "100%",
+  height: window.innerWidth > 768 ? "100vh" : "auto",
+  background: "rgba(0,0,0,0.25)",
+  backdropFilter: "blur(12px)",
+  color: "white",
+  padding: "1rem",
+  position: window.innerWidth > 768 ? "fixed" : "relative",
+  display: "flex",
+  flexDirection: window.innerWidth > 768 ? "column" : "row",
+  alignItems: "center",
+  justifyContent: window.innerWidth > 768 ? "flex-start" : "space-between",
+  zIndex: 10
+},
 
   sidebarBtn: {
     marginTop: "1rem",
