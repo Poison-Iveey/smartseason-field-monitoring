@@ -74,7 +74,7 @@ Email: yvettechristine245@gmail.com
 Password: mishap4110
 
 #### Agent Accounts
-Email: christineyvett0@gmail.com
+Email: christineyvette0@gmail.com
 Password: mishap4110
 
 Email: catherinefiona@gmail.com
@@ -93,8 +93,7 @@ Password: mishap4110
 - Can view all updates and crop statuses
 
 #### Agent
-- Can view all fields (read-only access)
-- Can only update fields assigned to them
+- Can only view and update fields assigned to them
 - Cannot create or reassign fields
 
 ### Field Access Rules
@@ -119,9 +118,14 @@ Access the live deployment on this link https://smartseason-field-monitoring-del
 Yvette Christine 
 
 ### screenshots
-- <img width="1125" height="764" alt="image" src="https://github.com/user-attachments/assets/70007856-ca00-4174-85de-94a506f37eeb" />
 
-- <img width="1126" height="764" alt="Screenshot from 2026-04-24 19-04-11" src="https://github.com/user-attachments/assets/624d35de-3f75-4e6f-af3a-16c0a62a33b2" />
+- <img width="1366" height="768" alt="Screenshot from 2026-04-25 16-42-48" src="https://github.com/user-attachments/assets/cf52eb11-45f0-4dbd-871b-89286e554083" />
+
+
+- <img width="1366" height="768" alt="Screenshot from 2026-04-25 16-39-59" src="https://github.com/user-attachments/assets/be41a37a-e3f4-46ad-b591-00a869419a70" />
+
+
+
 
 
 
