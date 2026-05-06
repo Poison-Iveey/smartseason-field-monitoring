@@ -8,6 +8,17 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  // DEMO FILL FUNCTIONS
+  const fillAdminDemo = () => {
+    setEmail("admin@shambarecords.demo");
+    setPassword("Admin@123");
+  };
+  
+  const fillAgentDemo = () => {
+  setEmail("agent.demo@shambarecords.demo");
+  setPassword("Agent@123");
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -108,6 +119,7 @@ export default function Login() {
             <input
               type="email"
               placeholder="Email"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
               style={{
                 width: "100%",
@@ -122,6 +134,7 @@ export default function Login() {
             <input
               type="password"
               placeholder="Password"
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
               style={{
                 width: "100%",
@@ -151,6 +164,37 @@ export default function Login() {
             </button>
 
           </form>
+
+          {/*  DEMO BUTTONS */}
+          <div style={{ marginTop: "1rem", textAlign: "center" }}>
+            <p style={{ fontSize: "0.9rem", opacity: 0.8 }}>Try Demo:</p>
+
+            <button
+              onClick={fillAdminDemo}
+              style={{
+                marginRight: "10px",
+                padding: "0.5rem 0.8rem",
+                borderRadius: "6px",
+                border: "none",
+                cursor: "pointer"
+              }}
+            >
+              Admin Demo
+            </button>
+
+            <button
+              onClick={fillAgentDemo}
+              style={{
+                padding: "0.5rem 0.8rem",
+                borderRadius: "6px",
+                border: "none",
+                cursor: "pointer"
+              }}
+            >
+              Agent Demo
+            </button>
+          </div>
+
         </div>
       </div>
     </div>
